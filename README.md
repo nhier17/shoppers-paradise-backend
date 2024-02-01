@@ -5,12 +5,12 @@ https://shoppers-paradise17.onrender.com
 A NodeJs restful API for an e-commerce web application
 
 ## Dependecies
-  express
-  mongoose
-  jsonwebtoken
-  bcryptjs
-  dotenv
-  cors
+    express
+    mongoose
+    jsonwebtoken
+    bcryptjs
+    dotenv
+    cors
   
 
 ## Setup Instructions
