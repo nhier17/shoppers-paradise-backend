@@ -21,7 +21,7 @@ image: {
 data: Buffer,    
 type: String,
 required: true,
-unique: true,
+
 },
 new_price: {
     type: Number,

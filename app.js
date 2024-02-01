@@ -4,6 +4,7 @@ require('express-async-errors');
 
 const express = require('express')
 const app = express();
+const fileUpload = require('express-fileupload')
 //security packages 
 const cors = require('cors')
 
@@ -19,6 +20,7 @@ const productRouter = require('./Routes/Products')
 app.use('/uploads',express.static('uploads'))
 app.use(express.json())
 app.use(cors())
+app.use(fileUpload())
 
 
 

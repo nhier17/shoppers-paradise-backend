@@ -56,7 +56,7 @@ const uploadImage = async (req,res) => {
         throw new CustomAPIError("No files uploaded")
     }
     const productImage = req.files.uploadImage
-    if (!productImage.mimetype.startsWith('image')) {
+    if (!productImage.startsWith('image')) {
         throw new CustomAPIError('Please upload image')
     }
     const imagePath = path.join(
