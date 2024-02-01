@@ -23,7 +23,16 @@ Routes and Middleware
     -set up express.json middleware
     -setup 404 and error handler middleware
     -import 'express-async-errors' package
-    
+
+User Model
+
+     -create models folder and User.js file
+     -create your user schema with name, email and password all type: String
+     -export your mongoose model
+
+Authentification routes
+
+    -create a controllers and auth.js file 
     
 
 
