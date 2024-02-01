@@ -59,7 +59,25 @@ Product Controllers
       -set up the products routes to handle post,get, patch and delete methods
       -export the router and set it up in app.js
       
-TEST ALL THE ROUTES IN POSTMAN        
+TEST ALL THE ROUTES IN POSTMAN      
+
+## Deploy on render
+https://render.com/
+        create a free account and follow the steps for a successful deployment
+
+## Author: Abraham Nhier
+
+             Email: abrahamnhier(&@gmail.com
+             Phone: +254716903151
+
+## Technology Used
+
+     1.Node.js
+     2.JavaScript
+
+## Framework Used
+
+    1.Git
 
 
 
