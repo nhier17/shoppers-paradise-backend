@@ -35,7 +35,7 @@ const updateProducts = async (req,res) => {
         runValidators: true,
     })
     if (!product) {
-        throw new CustomAPIError(`no product witg id: ${productId}`)
+        throw new CustomAPIError(`no product with id: ${productId}`)
     }
     res.status(StatusCodes.OK).json({ product })
 }
