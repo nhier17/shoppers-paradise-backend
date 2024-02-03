@@ -1,6 +1,6 @@
 /node_modules
 .env
 /text.txt
-/uploads
+
 # Local Netlify folder
 .netlify
