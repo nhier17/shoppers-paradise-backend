@@ -12,10 +12,9 @@ const queryObject = {}
 if (category) {
     queryObject.category = category
 }
+let result = Product.find(queryObject)
 const limit = Number(req.query.limit) || 6;
 result = result.limit(limit);
-
-let result = Product.find(queryObject)
 
 const products = await result;
 res.status(StatusCodes.OK).json({ products })
