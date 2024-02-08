@@ -31,8 +31,8 @@ app.get('/', (req, res) => {
 })
 
 //routes
-app.use('/api/v1/auth', authRouter)
-app.use('/api/v1/products', productRouter)
+app.use('/api/auth', authRouter)
+app.use('/api/products', productRouter)
 //middleware
 app.use(errorHandlerMiddleware)
 app.use(notFound)
