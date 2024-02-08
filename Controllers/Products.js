@@ -7,11 +7,13 @@ const getAllProducts = async (req,res) => {
 // get all products  
 const {category} = req.query
 const queryObject = {}
+
 if (category) {
     queryObject.category = category
 }
+let result = Product.find(queryObject)
 
-const products = await Product.find()
+const products = await result;
 res.status(StatusCodes.OK).json({ products })
 }
 
