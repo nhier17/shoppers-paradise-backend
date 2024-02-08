@@ -6,6 +6,7 @@ const path = require('path')
 const getAllProducts = async (req,res) => {
 // get all products  
 const {category} = req.query
+const queryObject = {}
 if (category) {
     queryObject.category = category
 }
