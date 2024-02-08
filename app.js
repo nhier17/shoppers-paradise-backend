@@ -7,6 +7,7 @@ const app = express();
 const fileUpload = require('express-fileupload')
 //security packages 
 const cors = require('cors')
+const helmet = require('helmet')
 
 const connectDB = require('./db/connect-db')
 //error handler middleware
@@ -20,6 +21,7 @@ const productRouter = require('./Routes/Products')
 app.use('/uploads',express.static('uploads'))
 app.use(express.json())
 app.use(cors())
+app.use(helmet())
 app.use(fileUpload())
 
 
