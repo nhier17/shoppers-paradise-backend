@@ -8,9 +8,13 @@ const getAllProducts = async (req,res) => {
 const {category} = req.query
 const queryObject = {}
 
+
 if (category) {
     queryObject.category = category
 }
+const limit = Number(req.query.limit) || 6;
+result = result.limit(limit);
+
 let result = Product.find(queryObject)
 
 const products = await result;
