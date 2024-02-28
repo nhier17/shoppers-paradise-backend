@@ -5,6 +5,7 @@ require('express-async-errors');
 const express = require('express')
 const app = express();
 const fileUpload = require('express-fileupload')
+const cookieParser = require('cookie-parser');
 //security packages 
 const cors = require('cors')
 const helmet = require('helmet')
