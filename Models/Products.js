@@ -31,7 +31,11 @@ old_price:{
     type: Number,
     required: true
 }
-
+description: {
+    type: String,
+    required: [true,"Please provide product description" ]
+    maxlength: [1000, "Description must be within the range"]
+}
 })
 
 module.exports = mongoose.model('Product', PRoductSchema);
