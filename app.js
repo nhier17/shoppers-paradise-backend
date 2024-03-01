@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 //security packages 
 const cors = require('cors')
 const helmet = require('helmet')
-const rateLimit = require('express-rate-limit')
+
 //db
 const connectDB = require('./db/connect-db')
 
@@ -22,12 +22,7 @@ const userRouter = require('./Routes/user')
 const notFound = require('./Middleware/not-found')
 const errorHandlerMiddleware = require('./Middleware/error-handler')
 
-//app.use(
-   // rateLimit({
-        //windowMs: 15 * 60 * 1000,
-        //max: 200,
-   // })
-//)
+
 app.use(express.json())
 app.use(cors())
 app.use(helmet())
