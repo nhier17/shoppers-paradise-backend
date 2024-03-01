@@ -25,7 +25,7 @@ const errorHandlerMiddleware = require('./Middleware/error-handler')
 app.use(
     rateLimit({
         windowMs: 15 * 60 * 1000,
-        max: 100,
+        max: 200,
     })
 )
 app.use(express.json())
