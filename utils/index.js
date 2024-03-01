@@ -6,5 +6,6 @@ module.exports = {
     createJWT,
     isTokenValid,
     attachCookiesToResponse,
-    createTokenUser
+    createTokenUser,
+    checkPermission
 }

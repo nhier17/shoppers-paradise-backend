@@ -18,6 +18,7 @@ const errorHandlerMiddleware = require('./Middleware/error-handler')
 //routes
 const authRouter = require('./Routes/auth')
 const productRouter = require('./Routes/Products')
+const userRouter = require('./Routes/user')
 
 app.use('/uploads',express.static('uploads'))
 app.use(express.json())
@@ -34,6 +35,7 @@ app.get('/', (req, res) => {
 //routes
 app.use('/api/auth', authRouter)
 app.use('/api/products', productRouter)
+app.use('/api/users', userRouter)
 //middleware
 app.use(errorHandlerMiddleware)
 app.use(notFound)
