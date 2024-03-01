@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
+const validator = require('validator')
 
 
 //define my user schema
@@ -14,11 +15,11 @@ const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, 'Please provide email'],
-        match: [
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            'Please provide a valid email',
-          ],
-          unique: true,
+         unique: true,
+         validate: {
+             validator: validator.isEmail,
+             message: props => `${props.value} is not a valid email`
+         }
     },
     password: {
         type: String,
@@ -37,7 +38,6 @@ UserSchema.methods.comparePassword = async function (userPassword) {
   const isMatch = await bcrypt.compare(userPassword, this.password)
   return isMatch  
 }
-
 
 
 module.exports = mongoose.model('User', UserSchema);
