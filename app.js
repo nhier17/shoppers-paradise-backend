@@ -22,9 +22,8 @@ const userRouter = require('./Routes/user')
 const notFound = require('./Middleware/not-found')
 const errorHandlerMiddleware = require('./Middleware/error-handler')
 
-
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 app.use(helmet())
 app.use(fileUpload())
 app.use(cookieParser(process.env.JWT_SECRET))
