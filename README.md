@@ -1,5 +1,5 @@
 # NAME: SHOPPERS PARADISE
-https://shoppers-paradise17.onrender.com
+
 
 ## Project Description
 A NodeJs restful API designed to power an innovative and dynamic e-commerce web application. My goal is to provide users with a seamless and enjoyable online shopping experience. The API is built with efficiency, security, and user-friendliness in mind.
