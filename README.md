@@ -1,8 +1,8 @@
 # NAME: SHOPPERS PARADISE
-https://shoppers-paradise17.onrender.com
+
 
 ## Project Description
-A NodeJs restful API for an e-commerce web application
+A NodeJs restful API designed to power an innovative and dynamic e-commerce web application. My goal is to provide users with a seamless and enjoyable online shopping experience. The API is built with efficiency, security, and user-friendliness in mind.
 
 ## Dependecies
     express
@@ -75,6 +75,7 @@ https://render.com/
 
      1.Node.js
      2.JavaScript
+     3.MongoDB
 
 ## Framework Used
 
