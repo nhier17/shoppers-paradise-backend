@@ -17,6 +17,7 @@ const connectDB = require('./db/connect-db')
 const authRouter = require('./Routes/auth')
 const productRouter = require('./Routes/Products')
 const userRouter = require('./Routes/user')
+const paymentRouter = require('./Routes/payments')
 
 //error handler middleware
 const notFound = require('./Middleware/not-found')
@@ -38,6 +39,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRouter)
 app.use('/api/products', productRouter)
 app.use('/api/users', userRouter)
+app.use('/api/payments', paymentRouter)
 //middleware
 app.use(errorHandlerMiddleware)
 app.use(notFound)
