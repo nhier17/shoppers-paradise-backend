@@ -1,11 +1,12 @@
 const Payments = require('../Models/payments')
 const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../Errors');
-const stripe = require('stripe')(process.env.PUBLISHABLE_KEY)
+const stripe = require('stripe')(process.env.SECRET_KEY)
 
 //create payment
 const createPayment = async (req, res) => {
-    const { amount, paymentMethod} = req.body;
+    try {
+        const { amount, paymentMethod} = req.body;
     const paymentIntent = await stripe.paymentIntents.create({
         amount: amount,
         currency: 'usd',
@@ -19,7 +20,12 @@ const createPayment = async (req, res) => {
         paymentMethod: paymentMethod
     })
     await payment.save()
-    res.status(StatusCodes.CREATED).json({ clientSecret: paymentIntent.client_secret })
+    res.status(StatusCodes.CREATED).json({ clientSecret: paymentIntent.client_secret }) 
+    } catch (error) {
+        console.error('Error saving payment', error)
+        res.status(StatusCodes.BAD_REQUEST).json({ error: error.message })
+    }
+   
 }
 
 module.exports = {
