@@ -45,8 +45,6 @@ if (!isPasswordCorrect) {
 const token = createTokenUser(user);
 attachCookiesToResponse({res, user: token});
 res.status(StatusCodes.OK).json({user: token })
-
-
 }
 const logout = async (req,res) => {
     res.cookie("token", "logout", {
