@@ -4,6 +4,8 @@ const validator = require('validator')
 
 
 //define my user schema
+const passwordStrengthRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -26,7 +28,7 @@ const UserSchema = new mongoose.Schema({
         required: [true, 'Please provide password'],
         minlength: 6,
         validate: {
-            validator: value => passwordStengthRegex.test(value),
+            validator: value => passwordStrengthRegex.test(value),
             message: "Password must contain at least one lowercase letter, one uppercase letter or one special character",
         }
 
