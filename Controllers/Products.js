@@ -1,4 +1,4 @@
-const CustomAPIError = require('../Errors/customeError')
+const CustomAPIError = require('../Errors')
 const Product = require('../Models/Products')
 const {StatusCodes} = require('http-status-codes')
 const path = require('path')
