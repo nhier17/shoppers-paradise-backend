@@ -1,7 +1,7 @@
 const Payments = require('../Models/payments')
 const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../Errors');
-const stripe = require('stripe')(process.env.SECRET_KEY)
+const stripe = require('stripe')(`${process.env.SECRET_KEY}`)
 
 //create payment
 const createPayment = async (req, res) => {
