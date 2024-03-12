@@ -4,7 +4,6 @@ require('express-async-errors');
 
 const express = require('express')
 const app = express();
-const fileUpload = require('express-fileupload')
 const cookieParser = require('cookie-parser');
 //security packages 
 const cors = require('cors')
@@ -26,7 +25,6 @@ const errorHandlerMiddleware = require('./Middleware/error-handler')
 app.use(cors())
 app.use(express.json())
 app.use(helmet())
-app.use(fileUpload())
 app.use(cookieParser(process.env.JWT_SECRET))
 app.use('/uploads',express.static('uploads'))
 

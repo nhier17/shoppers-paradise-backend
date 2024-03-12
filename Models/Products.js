@@ -13,12 +13,9 @@ name: {
 category: {
 type: String,
 required: true,
-enum: {
-    values:['men', 'women','kids']
-}
+enum: ['men', 'women','kids','smartphones']
 },
 image: {
-data: Buffer,    
 type: String,
 required: true,
 

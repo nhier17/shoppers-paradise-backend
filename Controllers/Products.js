@@ -1,5 +1,5 @@
-const CustomAPIError = require('../Errors')
 const Product = require('../Models/Products')
+const CustomError = require('../Errors')
 const {StatusCodes} = require('http-status-codes')
 const path = require('path')
 
@@ -33,11 +33,32 @@ try {
 
 //add products
 const addProducts = async (req,res) => {
-
- const newProduct = await Product.create(req.body)
- res.status(StatusCodes.CREATED).json({ newProduct })  
+    console.log(req.file)
+    try {
+        const { id, name, category, new_price,old_price, description } =req.body;
+        //access upload files
+        const image = req.file;
+        if (!image) {
+            throw new CustomError.NotFoundError('No images uploaded');
+        }
+        const imagePath = '/uploads/' + image.filename;
+          const newProduct = await Product.create({
+            id,
+            name,
+            category,
+            image: imagePath, 
+            new_price,
+            old_price,
+            description,
+          })
+        res.status(StatusCodes.CREATED).json({ newProduct }) 
+    } catch (error) {
+        console.error(error)
+        res.status(StatusCodes.BAD_REQUEST).json({ error: error.message })
+    }
 
 }
+
 const updateProducts = async (req,res) => {
     const {id: productId} = req.params
     const product = await Product.findOneAndUpdate({_id: productId}, req.body, {
@@ -45,7 +66,7 @@ const updateProducts = async (req,res) => {
         runValidators: true,
     })
     if (!product) {
-        throw new CustomAPIError(`no product with id: ${productId}`)
+        throw new CustomError.NotFoundError(`no product with id: ${productId}`)
     }
     res.status(StatusCodes.OK).json({ product })
 }
@@ -55,7 +76,7 @@ const deleteProduct = async (req,res) => {
     const product = await Product.findOne({ _id: productId });
   
     if (!product) {
-      throw new CustomAPIError(`No product with id : ${productId}`);
+      throw new CustomError.NotFoundError(`No product with id : ${productId}`);
     }
   
     await product.remove();
@@ -63,11 +84,11 @@ const deleteProduct = async (req,res) => {
 }
 const uploadImage = async (req,res) => {
     if (!req.files) {
-        throw new CustomAPIError("No files uploaded")
+        throw new CustomError.NotFoundError("No files uploaded")
     }
     const productImage = req.files.uploadImage
     if (!productImage.startsWith('image')) {
-        throw new CustomAPIError('Please upload image')
+        throw new CustomError.NotFoundError('Please upload image')
     }
     const imagePath = path.join(
         __dirname,

@@ -10,8 +10,10 @@ const createPayment = async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
         amount: amount,
         currency: 'usd',
+        
+    });
     
-    })
+    
     //save payment 
     const payment = new Payments({
         amount: amount,
