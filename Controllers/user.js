@@ -1,6 +1,8 @@
 const User = require('../Models/User');
 const {StatusCodes} = require('http-status-codes');
 const CustomError = require('../Errors')
+const mongoose = require('mongoose')
+const { ObjectId } = mongoose.Types;
 
 const {
     createTokenUser,
@@ -67,17 +69,31 @@ const updateUserPassword = async (req, res) => {
 }
 //last view  product
 const lastViewedProduct = async (req,res) => {
+   
     const userId = req.params.userId;
+    console.log(userId)
+    
     const { productId } = req.body;
+    console.log(req.body)
     try {
         const user = await User.findById(userId);
+        console.log(user)
         if(!user) {
             throw new CustomeError.NotFoundError(`No user with id: ${userId}`)
         }
 
         //update last viewed items
-        user.lastViewed.push(productId)
-        await user.save()
+        if (!user.lastViewed) {
+            user.lastViewed = []
+        }
+
+       
+
+        // Update last viewed items
+        const productIds = productId.map(id => new mongoose.Types.ObjectId(id));
+        user.lastViewed.push(...productIds)
+        await user.save();
+        console.log("user saved:", user)
         res.status(StatusCodes.OK).json({ msg: "Success! Product viewed"})
     } catch (error) {
         console.error("Error updating last viewed items",error)

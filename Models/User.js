@@ -39,11 +39,11 @@ const UserSchema = new mongoose.Schema({
         enum: ['admin', 'user'],
         default: 'user',
     }, 
-    lastViewed: {
+    lastViewed: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
         
-    }
+    }]
 })
 //hash the password
 UserSchema.pre('save',async function (){
