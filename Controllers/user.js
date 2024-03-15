@@ -65,11 +65,31 @@ const updateUserPassword = async (req, res) => {
       await user.save()
       res.status(StatusCodes.OK).json({ msg: "Success! Password updated"})
 }
+//last view  product
+const lastViewedProduct = async (req,res) => {
+    const userId = req.params.userId;
+    const { productId } = req.body;
+    try {
+        const user = await User.findById(userId);
+        if(!user) {
+            throw new CustomeError.NotFoundError(`No user with id: ${userId}`)
+        }
+
+        //update last viewed items
+        user.lastViewedItems.push(productId)
+        await user.save()
+        res.status(StatusCodes.OK).json({ msg: "Success! Product viewed"})
+    } catch (error) {
+        console.error("Error updating last viewed items",error)
+    }
+}
+
 
 module.exports = {
     getAllUsers,
     getSingleUser,
     showCurrentUser,
     updateUser,
-    updateUserPassword
+    updateUserPassword,
+    lastViewedProduct
 }

@@ -7,7 +7,8 @@ const {
     getSingleUser,
     showCurrentUser,
     updateUser,
-    updateUserPassword
+    updateUserPassword,
+    lastViewedProduct
 } = require('../Controllers/user')
 
 router.route('/').get(authenticateUser,authorizePermissions('admin'), getAllUsers)
@@ -17,5 +18,6 @@ router.route('/updateUser').patch(authenticateUser, updateUser)
 router.route('/updateUserPassword').patch(authenticateUser, updateUserPassword)
 
 router.route('/:id').get(authenticateUser,getSingleUser);
+router.route('/:userId/viewed').post(lastViewedProduct)
 
 module.exports = router;

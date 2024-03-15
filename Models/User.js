@@ -38,6 +38,11 @@ const UserSchema = new mongoose.Schema({
         required: [true, 'Please provide role'],
         enum: ['admin', 'user'],
         default: 'user',
+    }, 
+    lastViewed: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        
     }
 })
 //hash the password
