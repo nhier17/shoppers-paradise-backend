@@ -71,13 +71,13 @@ const updateUserPassword = async (req, res) => {
 const lastViewedProduct = async (req,res) => {
    
     const userId = req.params.userId;
-    console.log(userId)
+    
     
     const { productId } = req.body;
-    console.log(req.body)
+
     try {
         const user = await User.findById(userId);
-        console.log(user)
+        
         if(!user) {
             throw new CustomeError.NotFoundError(`No user with id: ${userId}`)
         }
@@ -93,7 +93,7 @@ const lastViewedProduct = async (req,res) => {
         const productIds = productId.map(id => new mongoose.Types.ObjectId(id));
         user.lastViewed.push(...productIds)
         await user.save();
-        console.log("user saved:", user)
+        
         res.status(StatusCodes.OK).json({ msg: "Success! Product viewed"})
     } catch (error) {
         console.error("Error updating last viewed items",error)
