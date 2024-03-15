@@ -76,7 +76,7 @@ const lastViewedProduct = async (req,res) => {
         }
 
         //update last viewed items
-        user.lastViewedItems.push(productId)
+        user.lastViewed.push(productId)
         await user.save()
         res.status(StatusCodes.OK).json({ msg: "Success! Product viewed"})
     } catch (error) {
