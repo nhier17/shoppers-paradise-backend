@@ -10,7 +10,7 @@ try {
     let totalAmount = 0;
     for (const itemId of items) {
         const product = await Product.findById(itemId);
-        console.log(product)
+    
         totalAmount += product.new_price;
         
     }
@@ -23,8 +23,7 @@ try {
 const createOrder = async (req, res) => {
     try {
         const { items } = req.body;
-           console.log(req.body);
-           
+                   
         if ( !items || !items.length ) {
             throw new CustomError.BadRequest('Please provide all the details')
         }
@@ -34,7 +33,7 @@ const createOrder = async (req, res) => {
             amount: totalAmount,
             currency: 'usd',
              });
-        console.log('Payment intent created:', paymentIntent);
+        
         //calculate subtotal excluding shipping charges
         let shippingFee = 0;
         const subtotal = totalAmount - shippingFee
