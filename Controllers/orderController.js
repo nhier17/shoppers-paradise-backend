@@ -12,44 +12,43 @@ try {
         const product = await Product.findById(itemId);
         console.log(product)
         totalAmount += product.new_price;
+        
     }
     return totalAmount * 100;
 } catch (error) {
-    throw new CustomError("Failed to calculate total amount")
+    throw new CustomError.BadRequest("Failed to calculate total amount")
 }
 }
-
+//create the order 
 const createOrder = async (req, res) => {
     try {
-        console.log(req.body);
-        const { items,user, shippingFee, status } = req.body;
-        if (!user || !shippingFee || !status || !items || !items.length === 0) {
-            throw new CustomError.BadRequest('Please provide user, shipping fee, status and items')
+        const { items } = req.body;
+           console.log(req.body);
+           
+        if ( !items || !items.length ) {
+            throw new CustomError.BadRequest('Please provide all the details')
         }
         //create payment intent
         const totalAmount = await calculateOrderAmount(items);
         const paymentIntent = await stripe.paymentIntents.create({
             amount: totalAmount,
             currency: 'usd',
-            automatic_payment_methods: {
-                enabled: true,
-              },
-        });
+             });
         console.log('Payment intent created:', paymentIntent);
         //calculate subtotal excluding shipping charges
-        const subtotal = (totalAmount / 100) - shippingFee
+        let shippingFee = 0;
+        const subtotal = totalAmount - shippingFee
         //create order
         const order = new Order({
-            user: user,
             products: items,
             shippingFee,
             total: totalAmount / 100,
-            subtotal,
-            status,
+            subtotal: subtotal / 100,
             transactionId: paymentIntent.id,
             clientSecret: paymentIntent.client_secret,
             paymentIntentId: paymentIntent.id 
         })
+        //save order to db
         await order.save()
 
         res.status(StatusCodes.CREATED).json(order)
@@ -57,6 +56,7 @@ const createOrder = async (req, res) => {
         console.error(error)
     }
 }
+//get all orders
 const getAllOrders = async (req, res) => {
     try {
         const orders = await Order.find({});
