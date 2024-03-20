@@ -13,7 +13,7 @@ name: {
 category: {
 type: String,
 required: true,
-enum: ['men', 'women','kids','smartphones']
+enum: ['men', 'women','kids','smartphones', 'mixed']
 },
 image: {
 type: String,
